@@ -21,10 +21,17 @@ class ContactsBuddyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Contacts Buddy',
-      home: HomePage(title: 'Contacts Buddy'),
+      home: const HomePage(title: 'Contacts Buddy'),
+      theme: ThemeData(
+        primaryColor: Colors.green.shade700,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.green.shade700,
+        ),
+        primarySwatch: Colors.green,
+      ),
     );
   }
 }
