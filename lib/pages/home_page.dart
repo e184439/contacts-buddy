@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   final _searchFormKey = GlobalKey<FormState>(debugLabel: 'search_form');
 
   // from https://pub.dev/packages/url_launcher/example
-  Future<void> _makePhoneCall(String phoneNumber) async {
+  Future<void> triggerCall(String phoneNumber) async {
     final Uri launchUri = Uri(
       scheme: 'tel',
       path: phoneNumber,
@@ -34,27 +34,32 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title), elevation: 0, actions: [
-        IconButton(
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return const AddContactPage();
-                },
+      appBar: AppBar(
+          title: Image.asset('assets/logo.png', height: 48.0),
+          centerTitle: true,
+          elevation: 0,
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const AddContactPage();
+                    },
+                  ),
+                );
+              },
+              icon: const Icon(
+                Icons.person_add_alt_sharp,
+                color: Colors.white,
               ),
-            );
-          },
-          icon: const Icon(
-            Icons.person_add_alt_sharp,
-          ),
-        ),
-      ]),
+            ),
+          ]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showSearch(context: context, delegate: ContactsSearch());
         },
-        child: const Icon(Icons.search),
+        child: const Icon(Icons.search, color: Colors.white),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -65,24 +70,20 @@ class _HomePageState extends State<HomePage> {
               valueListenable: Hive.box<Contact>('contacts').listenable(),
               builder: (context, Box<Contact> box, _) {
                 if (box.values.isEmpty) {
-                  return const Center(
-                    child: Text("¯\\_(ツ)_/¯\n\nNo contacts available.",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 32.0)),
-                  );
+                  return const Center();
                 }
 
                 return ListView.separated(
                   itemBuilder: (context, index) {
-                    Contact? currentContact = box.getAt(index);
+                    Contact? contactEntry = box.getAt(index);
 
-                    return ContactListItem(
-                      currentContact: currentContact!,
+                    return ContactListTile(
+                      currentContact: contactEntry!,
                       onPress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) {
                             return ContactDetailsPage(
-                                selectedContact: currentContact);
+                                selectedContact: contactEntry);
                           },
                         ));
                       },
@@ -93,13 +94,13 @@ class _HomePageState extends State<HomePage> {
                           builder: (context) {
                             return AlertDialog(
                               icon: const Icon(Icons.delete),
-                              title: const Text('Delete Contact'),
-                              content: Text(
-                                  'Your are going to delete ${currentContact?.name} permanently.\nAre you sure?'),
+                              title: const Text('Delete'),
+                              content: const Text(
+                                  'Are you sure you want to delete?'),
                               actions: [
                                 TextButton(
                                     onPressed: () {
-                                      currentContact?.delete();
+                                      contactEntry?.delete();
                                       Navigator.pop(context);
                                     },
                                     child: const Text('Ok')),
@@ -117,13 +118,13 @@ class _HomePageState extends State<HomePage> {
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) {
                             return EditContactPage(
-                              contact: currentContact!,
+                              contact: contactEntry!,
                             );
                           },
                         ));
                       },
                       onCall: () async {
-                        await _makePhoneCall(currentContact.telephone!);
+                        await triggerCall(contactEntry.telephone!);
                       },
                       onShare: () {},
                     );

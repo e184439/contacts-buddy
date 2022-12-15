@@ -113,7 +113,9 @@ class _AddContactPageState extends State<AddContactPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add New Contact'),
+        foregroundColor: Colors.white,
+        title: const Text('Add New Contact',
+            style: TextStyle(color: Colors.white)),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -147,13 +149,13 @@ class _AddContactPageState extends State<AddContactPage> {
                             TextButton.icon(
                               onPressed: _getFromCamera,
                               icon: const Icon(Icons.camera_alt),
-                              label: const Text('From Camera'),
+                              label: const Text('Camera'),
                             ),
                             const SizedBox(width: 16.0),
                             TextButton.icon(
                               onPressed: _getFromGallery,
                               icon: const Icon(Icons.image_search),
-                              label: const Text('From Gallery'),
+                              label: const Text('Gallery'),
                             ),
                           ],
                         ),
@@ -168,7 +170,6 @@ class _AddContactPageState extends State<AddContactPage> {
                   key: const Key('name'),
                   controller: _nameController,
                   decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
                     hintText: 'Enter name here',
                     labelText: 'Name',
                   ),
@@ -184,9 +185,8 @@ class _AddContactPageState extends State<AddContactPage> {
                   controller: _telephoneController,
                   keyboardType: TextInputType.phone,
                   decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
                     hintText: 'Enter telephone number here',
-                    labelText: 'Telephone',
+                    labelText: 'Telephone No.',
                   ),
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -203,9 +203,8 @@ class _AddContactPageState extends State<AddContactPage> {
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
                     hintText: 'Enter email address here',
-                    labelText: 'Email',
+                    labelText: 'Email Address',
                   ),
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -225,8 +224,9 @@ class _AddContactPageState extends State<AddContactPage> {
                   height: 48.0,
                   child: ElevatedButton.icon(
                     onPressed: _handleContactSave,
-                    icon: const Icon(Icons.save),
-                    label: const Text('Create Contact'),
+                    icon: const Icon(Icons.check, color: Colors.white),
+                    label: const Text('Create Contact',
+                        style: TextStyle(color: Colors.white, fontSize: 16.0)),
                   ),
                 ),
               ],

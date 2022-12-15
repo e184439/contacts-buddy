@@ -5,7 +5,7 @@ import 'package:contacts_buddy/models/contact.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class ContactListItem extends StatelessWidget {
+class ContactListTile extends StatelessWidget {
   final Contact currentContact;
   final VoidCallback onPress;
   final VoidCallback onLongPress;
@@ -14,7 +14,7 @@ class ContactListItem extends StatelessWidget {
   final VoidCallback onCall;
   final VoidCallback onShare;
 
-  const ContactListItem({
+  const ContactListTile({
     Key? key,
     required this.currentContact,
     required this.onPress,

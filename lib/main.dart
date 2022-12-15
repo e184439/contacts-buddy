@@ -23,14 +23,14 @@ class ContactsBuddyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Contacts Buddy',
-      home: const HomePage(title: 'Contacts Buddy'),
+      title: 'Contact Buddy',
+      home: const HomePage(title: 'Contact Buddy'),
       theme: ThemeData(
-        primaryColor: Colors.green.shade700,
+        primaryColor: Colors.amber.shade700,
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.green.shade700,
+          backgroundColor: Colors.amber.shade700,
         ),
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.amber,
       ),
     );
   }

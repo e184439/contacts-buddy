@@ -35,27 +35,28 @@ class _ContactDetailsPageState extends State<ContactDetailsPage> {
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  DetailsTile(
-                    text: widget.selectedContact.name!,
-                    label: 'Name',
-                  ),
-                  const SizedBox(height: 16.0),
-                  DetailsTile(
-                    text: widget.selectedContact.telephone!,
-                    label: 'Telephone No',
-                  ),
-                  const SizedBox(height: 16.0),
-                  DetailsTile(
-                    text: widget.selectedContact.email!,
-                    label: 'Email',
-                  ),
-                  const SizedBox(height: 16.0),
-                ],
-              )),
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                DetailsTile(
+                  text: widget.selectedContact.name!,
+                  label: 'Name',
+                ),
+                const SizedBox(height: 16.0),
+                DetailsTile(
+                  text: widget.selectedContact.telephone!,
+                  label: 'Telephone No',
+                ),
+                const SizedBox(height: 16.0),
+                DetailsTile(
+                  text: widget.selectedContact.email!,
+                  label: 'Email',
+                ),
+                const SizedBox(height: 16.0),
+              ],
+            ),
+          ),
         ),
       ]),
     );
