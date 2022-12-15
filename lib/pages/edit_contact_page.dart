@@ -74,7 +74,7 @@ class _EditContactPageState extends State<EditContactPage> {
     _emailController.text = editingContact.email!;
   }
 
-  /// save the contact entry
+  /// update the contact entry
   void _handleContactUpdate() async {
     _formKey.currentState!.save();
 
