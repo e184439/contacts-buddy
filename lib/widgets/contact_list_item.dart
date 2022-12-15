@@ -32,17 +32,22 @@ class ContactListItem extends StatelessWidget {
         motion: const DrawerMotion(),
         children: [
           SlidableAction(
-            onPressed: (context) => onPress(),
-            icon: Icons.delete_outline,
-            backgroundColor: Colors.red,
+            onPressed: (context) => onEdit(),
+            icon: Icons.edit,
+            backgroundColor: Colors.blue,
             padding: const EdgeInsets.all(8.0),
             foregroundColor: Colors.white,
             autoClose: true,
           ),
+        ],
+      ),
+      endActionPane: ActionPane(
+        motion: const DrawerMotion(),
+        children: [
           SlidableAction(
-            onPressed: (context) => onEdit(),
-            icon: Icons.edit,
-            backgroundColor: Colors.blue,
+            onPressed: (context) => onDelete(),
+            icon: Icons.delete_outline,
+            backgroundColor: Colors.red,
             padding: const EdgeInsets.all(8.0),
             foregroundColor: Colors.white,
             autoClose: true,

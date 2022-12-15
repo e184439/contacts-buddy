@@ -1,10 +1,11 @@
 import 'package:contacts_buddy/models/contact.dart';
-import 'package:contacts_buddy/pages/add_contact_page.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../services/contacts_search.dart';
+import '../widgets/contact_list_item.dart';
+import 'add_contact_page.dart';
 import 'contact_details_page.dart';
 import 'edit_contact_page.dart';
 
